@@ -1,35 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Grudge from './Grudge';
 
-const NewGrudge = React.memo(({ onSubmit }) => {
-  const [person, setPerson] = useState('');
-  const [reason, setReason] = useState('');
-
-  console.log('Rendering New Grudge');
-
-  const handleChange = event => {
-    event.preventDefault();
-    onSubmit({ person, reason });
-  };
-
+const Grudges = ({ grudges = [], onForgive }) => {
   return (
-    <form className="NewGrudge" onSubmit={handleChange}>
-      <input
-        className="NewGrudge-input"
-        placeholder="Person"
-        type="text"
-        value={person}
-        onChange={event => setPerson(event.target.value)}
-      />
-      <input
-        className="NewGrudge-input"
-        placeholder="Reason"
-        type="text"
-        value={reason}
-        onChange={event => setReason(event.target.value)}
-      />
-      <input className="NewGrudge-submit button" type="submit" />
-    </form>
+    <section className="Grudges">
+      <h2>Grudges ({grudges.length})</h2>
+      {grudges.map(grudge => (
+        <Grudge key={grudge.id} grudge={grudge} onForgive={onForgive} />
+      ))}
+    </section>
   );
-});
+};
 
-export default NewGrudge;
+export default Grudges;

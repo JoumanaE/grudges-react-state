@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const Grudge = React.memo(({ grudge, onForgive }) => {
